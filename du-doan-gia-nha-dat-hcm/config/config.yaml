@@ -1,0 +1,128 @@
+# ==========================================================
+# FILE CẤU HÌNH DỰ ÁN
+# Mọi tham số "ma thuật" (magic number) đặt ở đây, không
+# viết cứng trong code — để dễ giải thích khi vấn đáp.
+# ==========================================================
+
+du_an:
+  ten: "Dự đoán giá nhà đất TP.HCM"
+  phien_ban: "1.0"
+
+# ----------------------------------------------------------
+# ĐƯỜNG DẪN
+# ----------------------------------------------------------
+duong_dan:
+  du_lieu_tho: "data/raw"
+  du_lieu_trung_gian: "data/interim"
+  du_lieu_sach: "data/processed"
+  bieu_do: "reports/figures"
+
+# Tên file nguồn trong data/raw/
+file_nguon:
+  cafeland: "cafeland_raw.csv"
+  batdongsan: "bat_dong_san_raw.xlsb"
+  chotot: "chotot_bds_dataset.csv"
+
+# ----------------------------------------------------------
+# PHẠM VI ĐỀ TÀI
+# ----------------------------------------------------------
+pham_vi:
+  tinh_thanh: "TP. Hồ Chí Minh"
+  # Các cách viết khác nhau của TP.HCM giữa 3 nguồn
+  bien_the_ten_tinh:
+    - "TP. Hồ Chí Minh"
+    - "Tp Hồ Chí Minh"
+    - "Thành phố Hồ Chí Minh"
+    - "Hồ Chí Minh"
+    - "TPHCM"
+  # Chỉ giữ tin BÁN, loại tin cho thuê
+  loai_giao_dich: "ban"
+
+# ----------------------------------------------------------
+# NGƯỠNG LỌC NGOẠI LAI (OUTLIER)
+# Giải thích: giá tính bằng TRIỆU VNĐ, diện tích bằng m²
+# Ngưỡng đặt theo phân vị + kiểm tra thực tế thị trường
+# ----------------------------------------------------------
+nguong_loc:
+  gia_trieu_vnd:
+    min: 100          # dưới 100 triệu → nhiều khả năng là giá thuê hoặc lỗi
+    max: 200000       # trên 200 tỷ → ngoại lai cực đoan, loại bỏ
+  dien_tich_m2:
+    min: 10           # dưới 10m² → không hợp lý với nhà đất bán
+    max: 10000        # trên 10.000m² → đất dự án, ngoài phạm vi đề tài
+  # Phương pháp bổ sung: loại theo IQR
+  dung_iqr: true
+  he_so_iqr: 3.0      # 3.0 thay vì 1.5 vì giá BĐS lệch phải mạnh
+
+# ----------------------------------------------------------
+# TỪ KHÓA PHÂN LOẠI BÁN / THUÊ
+# Dùng để tách tin cho thuê ra khỏi dữ liệu
+# ----------------------------------------------------------
+tu_khoa:
+  thue:
+    - "cho thuê"
+    - "thuê"
+    - "trọ"
+    - "phòng trọ"
+    - "ở ghép"
+    - "/tháng"
+    - "tr/th"
+  ban:
+    - "bán"
+    - "sang nhượng"
+    - "chính chủ bán"
+
+# ----------------------------------------------------------
+# ÁNH XẠ NHÃN LOẠI HÌNH BĐS VỀ BỘ NHÃN CHUNG
+# ----------------------------------------------------------
+anh_xa_loai_hinh:
+  "Nhà riêng": "Nha rieng"
+  "Bán nhà riêng": "Nha rieng"
+  "Nhà ở": "Nha rieng"
+  "Nhà": "Nha rieng"
+  "Căn hộ": "Can ho"
+  "Bán căn hộ chung cư": "Can ho"
+  "Căn hộ/Chung cư": "Can ho"
+  "Bán căn hộ Mini, Dịch vụ": "Can ho"
+  "Đất thổ cư": "Dat"
+  "Bán đất thổ cư": "Dat"
+  "Đất nền": "Dat"
+  "Bán đất nền dự án": "Dat"
+  "Đất": "Dat"
+  "Biệt thự": "Biet thu"
+  "Bán biệt thự": "Biet thu"
+  "Nhà mặt tiền": "Nha mat tien"
+  "Nhà mặt phố": "Nha mat tien"
+  "Nhà phố": "Nha pho"
+  "Bán nhà phố dự án": "Nha pho"
+  "Shophouse": "Shophouse"
+
+# ----------------------------------------------------------
+# MÔ HÌNH
+# ----------------------------------------------------------
+mo_hinh:
+  bien_muc_tieu: "gia_ban_trieu"
+  ty_le_test: 0.2
+  random_state: 42        # cố định để kết quả tái lập được
+  so_fold_cv: 5
+
+  # Các mô hình sẽ so sánh (đề cương yêu cầu ≥2)
+  danh_sach:
+    - "hoi_quy_tuyen_tinh"
+    - "cay_quyet_dinh"
+    - "rung_ngau_nhien"
+
+  # Chỉ số đánh giá (đề cương yêu cầu ≥2)
+  chi_so_danh_gia:
+    - "R2"
+    - "RMSE"
+    - "MAE"
+
+# ----------------------------------------------------------
+# BIỂU ĐỒ
+# ----------------------------------------------------------
+bieu_do:
+  dpi: 150
+  kich_thuoc: [10, 6]
+  bang_mau: "Set2"
+  font_size: 11
