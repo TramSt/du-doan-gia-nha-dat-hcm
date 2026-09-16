@@ -1,1 +1,0 @@
-"""Module tạo đặc trưng."""
