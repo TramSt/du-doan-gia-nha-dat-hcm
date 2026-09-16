@@ -20,8 +20,14 @@ duong_dan:
 # Tên file nguồn trong data/raw/
 file_nguon:
   cafeland: "cafeland_raw.csv"
-  batdongsan: "bat_dong_san_raw.xlsb"
-  chotot: "chotot_bds_dataset.csv"
+  batdongsan: "bat_dong_san_raw.xls"
+  chotot: "chotot_bds_dataset.xls"   # thực chất là CSV
+
+# Nguồn đưa vào pipeline. chotot chỉ dùng để khảo sát (phương án dự phòng):
+# CafeLand + batdongsan đã đủ > 5.000 dòng nên không gộp chotot.
+nguon_su_dung:
+  - cafeland
+  - batdongsan
 
 # ----------------------------------------------------------
 # PHẠM VI ĐỀ TÀI
@@ -76,32 +82,32 @@ tu_khoa:
 # ÁNH XẠ NHÃN LOẠI HÌNH BĐS VỀ BỘ NHÃN CHUNG
 # ----------------------------------------------------------
 anh_xa_loai_hinh:
-  "Nhà riêng": "Nha rieng"
-  "Bán nhà riêng": "Nha rieng"
-  "Nhà ở": "Nha rieng"
-  "Nhà": "Nha rieng"
-  "Căn hộ": "Can ho"
-  "Bán căn hộ chung cư": "Can ho"
-  "Căn hộ/Chung cư": "Can ho"
-  "Bán căn hộ Mini, Dịch vụ": "Can ho"
-  "Đất thổ cư": "Dat"
-  "Bán đất thổ cư": "Dat"
-  "Đất nền": "Dat"
-  "Bán đất nền dự án": "Dat"
-  "Đất": "Dat"
-  "Biệt thự": "Biet thu"
-  "Bán biệt thự": "Biet thu"
-  "Nhà mặt tiền": "Nha mat tien"
-  "Nhà mặt phố": "Nha mat tien"
-  "Nhà phố": "Nha pho"
-  "Bán nhà phố dự án": "Nha pho"
+  "Nhà riêng": "Nhà rieng"
+  "Bán nhà riêng": "Nhà rieng"
+  "Nhà ở": "Nhà rieng"
+  "Nhà": "Nhà rieng"
+  "Căn hộ": "căn hộ"
+  "Bán căn hộ chung cư": "căn hộ"
+  "Căn hộ/Chung cư": "căn hộ"
+  "Bán căn hộ Mini, Dịch vụ": "căn hộ"
+  "Đất thổ cư": "Đất"
+  "Bán đất thổ cư": "Đất"
+  "Đất nền": "Đất"
+  "Bán đất nền dự án": "Đất"
+  "Đất": "Đất"
+  "Biệt thự": "Biệt thự"
+  "Bán biệt thự": "Biệt thự"
+  "Nhà mặt tiền": "Nhà mặt tiền"
+  "Nhà mặt phố": "Nhà mặt tiền"
+  "Nhà phố": "Nhà phố"
+  "Bán nhà phố dự án": "Nhà phố"
   "Shophouse": "Shophouse"
 
 # ----------------------------------------------------------
 # MÔ HÌNH
 # ----------------------------------------------------------
 mo_hinh:
-  bien_muc_tieu: "gia_ban_trieu"
+  bien_muc_tieu: "gia_ban"
   ty_le_test: 0.2
   random_state: 42        # cố định để kết quả tái lập được
   so_fold_cv: 5
