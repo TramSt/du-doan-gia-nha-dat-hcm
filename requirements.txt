@@ -1,0 +1,13 @@
+pandas>=2.2,<3.0
+numpy>=1.26
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+pyyaml>=6.0
+jupyter>=1.0
+# Chỉ cần khi chạy lại crawler (notebooks/00a, 00b)
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+tqdm>=4.66
+openpyxl>=3.1
