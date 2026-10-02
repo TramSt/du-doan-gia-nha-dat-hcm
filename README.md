@@ -23,7 +23,7 @@
 │   ├── 01_thu_thap_du_lieu.ipynb     # mô tả nguồn, chất lượng dữ liệu thô
 │   ├── 02_lam_sach_du_lieu.ipynb     # raw → df_raw
 │   ├── 02_lam_sach_du_lieu_2.ipynb   # df_raw → df_clean (+ bảng kiểm toán)
-│   ├── 03_phan_tich_kham_pha_eda.ipynb   # Bài tập 3 (đang làm)
+│   ├── 03_phan_tich_kham_pha_eda.ipynb   # co file xu ly ngoai lai, 1 file df_bt3
 │   └── 04_xay_dung_mo_hinh.ipynb         # Bài tập 4 (đang làm)
 ├── reports/figures/
 └── src/
